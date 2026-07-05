@@ -93,8 +93,8 @@ a:hover {
 
 .nav-links {
     display: flex;
-    flex-wrap: flex;
-    gap: 0.2rem 0;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     font-size: 0.9rem;
 }
 
@@ -104,8 +104,7 @@ a:hover {
     border: 1px solid var(--border);
     padding: 0.3rem 0.75rem;
     border-radius: 2rem;
-    margin-right: 0.4rem;
-    margin-bottom: 0.4rem;
+    white-space: nowrap;
     transition: background 0.15s, border-color 0.15s;
 }
 
