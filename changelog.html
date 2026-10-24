@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Changelog - Adam Thompson</title>
+
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=DM+Sans:wght@300;500&display=swap" rel="stylesheet" />
+
+        <script>
+            (function () {
+                var stored = null;
+                try {
+                    stored = localStorage.getItem('theme');
+                } catch (e) {}
+                var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.documentElement.dataset.theme = stored || (prefersDark ? 'dark' : 'light');
+            })();
+        </script>
+
+        <link rel="stylesheet" href="main.css" />
+
+        <meta name="description" content="A running log of changes to theadamthompson.com." />
+        <link rel="canonical" href="https://theadamthompson.com/changelog.html" />
+    </head>
+    <body>
+        <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+            <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+            </svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <circle cx="12" cy="12" r="4.5" />
+                <path d="M12 1.5v2.5M12 20v2.5M1.5 12H4M20 12h2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8" />
+            </svg>
+        </button>
+
+        <div class="page">
+            <header class="site-header">
+                <a class="back-link" href="./">&larr; Back home</a>
+                <h1>Changelog</h1>
+                <p class="sub">A log of everything that has changed on this site.</p>
+            </header>
+
+            <section>
+                <ul class="changelog-list">
+                    <li>
+                        <time datetime="2026-10-24">October 24, 2026</time>
+                        <ul>
+                            <li>Added this changelog.</li>
+                            <li>Added a dark mode.</li>
+                            <li>Added the Coordinate Converter and Hiking Calorie Calculator to Projects.</li>
+                            <li>Added structured profile data for search engines.</li>
+                            <li>Trimmed fonts and CSS so the page loads faster.</li>
+                            <li>Added a favicon and fixed a handful of typos.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <time datetime="2026-08-15">August 15, 2026</time>
+                        <ul>
+                            <li>Added a link to my tech blog and fixed some alignment issues.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <time datetime="2026-07-22">July 22, 2026</time>
+                        <ul>
+                            <li>Added YouTube and Instagram links.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <time datetime="2026-07-05">July 5, 2026</time>
+                        <ul>
+                            <li>Fixed the link pills on mobile.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <time datetime="2026-06-18">June 18, 2026</time>
+                        <ul>
+                            <li>Added a profile photo.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <time datetime="2026-06-13">June 13, 2026</time>
+                        <ul>
+                            <li>Launched the initial version of this site.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <footer class="site-footer">
+                <a href="./">Home</a>
+            </footer>
+        </div>
+
+        <script>
+            (function () {
+                var root = document.documentElement;
+                var toggle = document.querySelector('.theme-toggle');
+                var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+                function label() {
+                    var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+                    toggle.setAttribute('aria-label', 'Switch to ' + next + ' mode');
+                }
+
+                toggle.addEventListener('click', function () {
+                    var next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+                    root.dataset.theme = next;
+                    try {
+                        localStorage.setItem('theme', next);
+                    } catch (e) {}
+                    label();
+                });
+
+                // Follow system changes until the visitor picks a theme themselves
+                media.addEventListener('change', function (e) {
+                    var stored = null;
+                    try {
+                        stored = localStorage.getItem('theme');
+                    } catch (err) {}
+                    if (!stored) {
+                        root.dataset.theme = e.matches ? 'dark' : 'light';
+                        label();
+                    }
+                });
+
+                label();
+            })();
+        </script>
+    </body>
+</html>
