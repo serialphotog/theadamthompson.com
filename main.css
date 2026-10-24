@@ -3,8 +3,27 @@
     --fg: #1a1a18;
     --muted: #6b6b66;
     --border: #e0e0d8;
+    color-scheme: light;
     --serif: 'Lora', Georgia, serif;
     --sans: 'DM Sans', system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #161614;
+        --fg: #ecebe5;
+        --muted: #9c9b94;
+        --border: #35352f;
+        color-scheme: dark;
+    }
+}
+
+:root[data-theme="dark"] {
+    --bg: #161614;
+    --fg: #ecebe5;
+    --muted: #9c9b94;
+    --border: #35352f;
+    color-scheme: dark;
 }
 
 *, *::before, *::after {
@@ -110,6 +129,52 @@ a:hover {
     background: var(--fg);
     color: var(--bg);
     border-color: var(--fg);
+}
+
+/* ── Theme toggle ── */
+.theme-toggle {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+/* Only shown once the head script has run, since it needs JS to work */
+:root[data-theme] .theme-toggle {
+    display: inline-flex;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+    color: var(--fg);
+    border-color: var(--fg);
+}
+
+.theme-toggle svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.theme-toggle .icon-sun,
+:root[data-theme="dark"] .theme-toggle .icon-moon {
+    display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .icon-sun {
+    display: block;
 }
 
 section {
